@@ -15,12 +15,12 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '22.3.0'  # Set to your desired minimum Node.js version
+          node-version: '22.3.0'
 
       - name: Set up Go
         uses: actions/setup-go@v4
         with:
-          go-version: '1.22.1'  # Set to your desired Go version
+          go-version: '1.22.1'
 
       - name: Install dependencies
         run: go mod tidy
