@@ -1,2 +1,2 @@
-# marker-replacer
+# Marker Replacer
 Simple marker replacer
