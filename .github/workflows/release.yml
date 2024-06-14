@@ -12,6 +12,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '22.3.0'  # Set to your desired minimum Node.js version
+
       - name: Set up Go
         uses: actions/setup-go@v4
         with:
