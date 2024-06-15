@@ -22,7 +22,7 @@ func TestMainFunction(t *testing.T) {
 	os.Stdout = w
 
 	// Run the function
-	err = run(runArgs)
+	err := run(runArgs)
 	if err != nil {
 		t.Fatalf("Error running main function: %v", err)
 	}
