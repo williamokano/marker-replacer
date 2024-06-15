@@ -27,7 +27,7 @@ func run(runArgs []string) error {
 
 	if *filePath == "" || *marker == "" {
 		fmt.Printf("Usage: %s -file <file_path> -marker <marker> <new_content>\n", os.Args[0])
-		flag.PrintDefaults()
+		flagSet.PrintDefaults()
 		os.Exit(1)
 	}
 
