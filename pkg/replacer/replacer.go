@@ -21,6 +21,7 @@ func NewFileReplacer(fs afero.Fs, filename string) *FileReplacer {
 }
 
 func (r *FileReplacer) Replace(marker string, newContent string) (string, error) {
+
 	file, err := r.fs.Open(r.Filename)
 	if err != nil {
 		return "", fmt.Errorf("failed to open file: %w", err)

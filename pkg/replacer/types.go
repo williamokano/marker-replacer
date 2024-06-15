@@ -1,5 +1,6 @@
 package replacer
 
 type Replacer interface {
-	Replace(marker string, newContent string) (string, error)
+	Replace(marker string, newContent string) error
+	GetString() string
 }
