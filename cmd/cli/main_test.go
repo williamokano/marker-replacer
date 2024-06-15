@@ -9,12 +9,6 @@ import (
 )
 
 func TestMainFunction(t *testing.T) {
-	// Get the current working directory
-	workingDir, err := os.Getwd()
-	if err != nil {
-		t.Fatalf("Failed to get working directory: %v", err)
-	}
-	fmt.Println(workingDir)
 	// Define the marker and new content
 	fixtureFile := "../../testdata/fixtures/marker_example.md"
 	marker := "commands"
