@@ -9,7 +9,7 @@ trying several ways, so I got angry and wrote this.
 Basically it reads a file, looks for a marker like the one below (please se raw version as Markdown doesn't render it)
 and then you can give any arbitrary text, and it should replace for you.
 
-Just [install](#install) it (or download the binaries, I spend some time building multi-arch binaries for you 🥲) and run it.
+Just [install](#install) it (or download the binaries, I spent some time building multi-arch binaries for you 🥲) and run it.
 
 ## Install
 Easiest way, `go install github.com/williamokano/marker-replacer/cmd/cli && mv ${GOBIN}/cli ${GOBIN}/marker-replacer`
