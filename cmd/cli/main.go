@@ -1,14 +1,34 @@
 package main
 
 import (
+	"bufio"
 	"flag"
 	"fmt"
+	"io"
 	"os"
 	"strings"
 
 	"github.com/spf13/afero"
 	"github.com/williamokano/marker-replacer/pkg/replacer"
 )
+
+func isStdinAvailable() bool {
+	info, err := os.Stdin.Stat()
+	if err != nil {
+		return false
+	}
+	return info.Mode()&os.ModeCharDevice == 0
+}
+
+func readStdin() (string, error) {
+	var builder strings.Builder
+	reader := bufio.NewReader(os.Stdin)
+	_, err := io.Copy(&builder, reader)
+	if err != nil {
+		return "", err
+	}
+	return builder.String(), nil
+}
 
 func main() {
 	if err := run(os.Args); err != nil {
@@ -32,13 +52,21 @@ func run(runArgs []string) error {
 	}
 
 	args := flagSet.Args()
-	if len(args) == 0 {
+
+	var newContent string
+	if isStdinAvailable() {
+		stdinContent, err := readStdin()
+		if err != nil {
+			return fmt.Errorf("failed to read from stdin: %w", err)
+		}
+		newContent = stdinContent
+	} else if len(args) > 0 {
+		newContent = strings.Join(args, " ")
+	} else {
 		fmt.Printf("Usage: %s -file <file_path> -marker <marker> <new_content>\n", os.Args[0])
-		flag.PrintDefaults()
+		flagSet.PrintDefaults()
 		os.Exit(1)
 	}
-
-	newContent := strings.Join(args, " ")
 
 	fileReplacer := replacer.NewFileReplacer(afero.NewOsFs(), *filePath)
 
